@@ -1,17 +1,49 @@
-# Factorio Server
+[![](https://badge.imagelayers.io/carloe/docker-factorio:latest.svg)](https://imagelayers.io/?images=carloe/docker-factorio:latest 'Get your own badge on imagelayers.io')
 
-Build the image
+# Introduction
+
+Dockerfile to build a [Factorio](https://www.factorio.com) game server image. You can find the pre-built images on Docker Hub at [carloe/docker-factorio](https://hub.docker.com/r/carloe/docker-factorio/)
+
+# Basic Usage
+
+The init script will automatically create a new save game if none exists. 
 
 ```bash
-docker build -t factorio .
+docker run -d \
+           -p 34197:34197/udp \
+           --name factorio-server \
+           carloe/docker-factorio 
 ```
 
-Run the server
+# Persisting Saves
+
+Use a docker volume to persist the savegames on the host machine rather than in the docker container.
 
 ```bash
-docker run -d -v $(pwd)/saves:/opt/factorio/saves \
+docker run -d \
+           -v $(pwd)/saves:/opt/factorio/saves \
            -p 34197:34197/udp \
            --restart=always \
            --name factorio-server \
-           factorio 
+           carloe/docker-factorio 
+```
+
+# Build Your Own
+
+The latest Factorio headless server is downloaded at build time. This may be a good reason you want to build your own image since the Docker Hub repo may not always be up to date.
+
+```bash
+git clone https://github.com/carloe/docker-factorio.git
+docker build -t some-factorio .
+```
+
+Then launch your container as usual.
+
+```bash
+docker run -d \
+           -v $(pwd)/saves:/opt/factorio/saves \
+           -p 34197:34197/udp \
+           --restart=always \
+           --name factorio-server \
+           some-factorio 
 ```
