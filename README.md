@@ -20,6 +20,12 @@ docker run -d \
 Use a docker volume to persist the savegames on the host machine rather than in the docker container.
 
 ```bash
+mkdir $(pwd)/saves
+
+# Make sure the saves dir can be written to by the "factorio" user in Docker, with uid 1000
+sudo chown 1000:1000 $(pwd)/saves
+# (alternatively, if you don't have root): chmod 777 $(pwd)/saves
+
 docker run -d \
            -v $(pwd)/saves:/opt/factorio/saves \
            -p 34197:34197/udp \
