@@ -5,8 +5,8 @@ $ cat factorio.sh
 PORT=34197  
   
 docker run -d \  
-  --env FACTORIO_SERVER_GAME_PASSWORD=cultoffactorio \  
-  --env FACTORIO_SERVER_GAME="Cult of Factorio" \  
+  --env FACTORIO_SERVER_GAME_PASSWORD=cultofthefactorio \  
+  --env FACTORIO_SERVER_GAME="Cult of the Factorio" \  
   --env FACTORIO_SERVER_PORT=$PORT \  
   -p $PORT:$PORT/udp \  
   factorio
