@@ -1,4 +1,4 @@
-\# cat factorio.sh  
+\$ cat factorio.sh  
 \#!/bin/bash  
   
 PORT=34197  
