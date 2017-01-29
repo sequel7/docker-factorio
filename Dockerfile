@@ -1,7 +1,5 @@
 FROM ubuntu:14.04
 
-MAINTAINER Carlo Eugster <carlo@relaun.ch>
-
 RUN  apt-get update \
   && apt-get install -y wget \
   && apt-get clean \
@@ -13,6 +11,8 @@ USER factorio
 
 ENV HOME /opt/factorio
 ENV SAVEFILE /opt/factorio/saves/factorio_save.zip
+ENV FACTORIO_SERVER_GAME Cult of the Factorio
+ENV FACTORIO_SERVER_GAME_PASSWORD cultofthefactorio
 
 WORKDIR /opt/factorio
 
@@ -22,6 +22,7 @@ RUN  wget -q -O - https://www.factorio.com/download-headless/stable | grep -o -m
 
 ADD  init.sh /opt/factorio/
 ADD server-settings.example.json /opt/factorio/data/
+RUN cat /opt/factorio/data/server-settings.example.json | sed s/"GAMENAME"/"$FACTORIO_SERVER_GAME"/ | sed s/"GAME_PASSWORD"/"$FACTORIO_SERVER_GAME_PASSWORD"/
 
 EXPOSE 34197/udp
 CMD ["./init.sh"]
