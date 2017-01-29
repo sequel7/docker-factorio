@@ -10,6 +10,7 @@
   
   "visibility":
   {
+    "public": false,
     "lan": true
   },
 
