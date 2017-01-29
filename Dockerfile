@@ -22,7 +22,6 @@ RUN  wget -q -O - https://www.factorio.com/download-headless/stable | grep -o -m
 
 ADD  init.sh /opt/factorio/
 ADD server-settings.example.json /opt/factorio/data/
-RUN cat /opt/factorio/data/server-settings.example.json | sed s/"GAMENAME"/"$FACTORIO_SERVER_GAME"/ | sed s/"GAME_PASSWORD"/"$FACTORIO_SERVER_GAME_PASSWORD"/ > /opt/factorio/data/server-settings.json
 
 EXPOSE 34197/udp
 CMD ["./init.sh"]
