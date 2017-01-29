@@ -13,6 +13,7 @@ ENV HOME /opt/factorio
 ENV SAVEFILE /opt/factorio/saves/factorio_save.zip
 ENV FACTORIO_SERVER_GAME Cult of the Factorio
 ENV FACTORIO_SERVER_GAME_PASSWORD cultofthefactorio
+ENV FACTORIO_SERVER_PORT 34197
 
 WORKDIR /opt/factorio
 
