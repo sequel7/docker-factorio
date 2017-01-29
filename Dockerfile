@@ -21,6 +21,7 @@ RUN  wget -q -O - https://www.factorio.com/download-headless/stable | grep -o -m
   && rm -rf /tmp/factorio.tar.gz
 
 ADD  init.sh /opt/factorio/
+ADD server-settings.example.json /opt/factorio/data/
 
 EXPOSE 34197/udp
 CMD ["./init.sh"]
