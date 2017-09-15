@@ -17,9 +17,9 @@ ENV FACTORIO_SERVER_PORT 34197
 
 WORKDIR /opt/factorio
 
-RUN  wget -q -O - https://www.factorio.com/download-headless/stable | grep -o -m1 "/get-download/.*/headless/linux64" | awk '{print "--no-check-certificate https://www.factorio.com"$1" -O /tmp/factorio.tar.gz"}' | xargs wget \
-  && tar -xzf /tmp/factorio.tar.gz -C /opt \
-  && rm -rf /tmp/factorio.tar.gz
+RUN  wget -q -O - https://www.factorio.com/download-headless/stable | grep -o -m1 "/get-download/.*/headless/linux64" | awk '{print "--no-check-certificate https://www.factorio.com"$1" -O /tmp/"}' | xargs wget \
+  && tar -xzf /tmp/factorio.tar.* -C /opt \
+  && rm -rf /tmp/factorio.tar.*
 
 ADD  init.sh /opt/factorio/
 ADD server-settings.example.json /opt/factorio/data/
